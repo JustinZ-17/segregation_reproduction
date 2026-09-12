@@ -1,0 +1,2 @@
+# segregation_reproduction
+用DINOv2和PSPNet实现图像语义分割算法，在PASCAL VOC数据集上验证结果
