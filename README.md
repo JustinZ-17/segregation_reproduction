@@ -117,7 +117,7 @@ PSPNet 的核心是**金字塔池化模块（Pyramid Pooling Module）**：用 4
 | 验证集 mIoU | **67.5%** |
 | 像素准确率 | 约 95% |
 
-![训练曲线](dinov2_pspnet_voc_curves.png)
+![v2 训练曲线](dinov2_pspnet_voc_v2_curves.png)
 
 ### 4.2 训练曲线分析
 
@@ -158,7 +158,7 @@ mIoU = 21 个类别的 IoU 取平均
 
 ### 4.4 定性结果
 
-![分割效果](dinov2_pspnet_voc_prediction.png)
+![v2 分割效果](dinov2_pspnet_voc_v2_prediction.png)
 
 预测样例：飞机主体与背景区分清晰，机翼轮廓完整，仅边缘小区域有少量噪声。
 
