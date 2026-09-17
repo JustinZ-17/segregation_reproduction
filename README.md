@@ -3,7 +3,7 @@
 用 DINOv2（ViT-S/14，冻结 backbone）作为特征提取器，搭配 PSPNet 金字塔池化分割头，
 在 PASCAL VOC 2012 语义分割数据集上训练并验证。
 
-**最终结果：验证集 mIoU 67.5%，像素准确率约 95%**
+**最终结果：验证集 mIoU 75.5%（v2），像素准确率约 96.5%**（v1 基线为 67.5%，见文末消融表）
 
 ## 1. 任务与思路
 
@@ -95,6 +95,20 @@ PSPNet 的核心是**金字塔池化模块（Pyramid Pooling Module）**：用 4
 6. 可视化：训练曲线 + 原图 / 真值 / 预测三联对比图。
 
 ## 4. 结果与分析
+## 实验消融对比
+
+| 版本 | 配置 | 验证集 mIoU | 验证集 pixAcc | 备注 |
+|------|------|-------------|---------------|------|
+| **v1** | DINOv2-small + 224 + 无增强 + 20ep | 67.5% | ~95% | 老师布置任务的最低基线 |
+| **v2** | DINOv2-small + 448 + 增强 + 50ep | **75.5%** | ~96.5% | 分辨率是真正的瓶颈，验证假设 |
+
+**结论**：
+
+- 增强本身在小数据集上 +50ep 只能 +0.5（v1→中间实验 68%），几乎打平；
+- 但分辨率从 224 提到 448（16×16→32×32 特征图），mIoU **直接 +7.5**（68→75.5%），是当前最大的单项收益。
+
+**v3 计划**：把 backbone 从 `dinov2-small` 换成 `dinov2-base`（特征维度 384→768），冲 80%。
+
 
 ### 4.1 总体指标
 
@@ -162,6 +176,10 @@ mIoU = 21 个类别的 IoU 取平均
 | `dinov2_pspnet_voc_best_head.pth` | 训练得到的最优分割头权重 |
 | `dinov2_pspnet_voc_curves.png` | loss / mIoU 训练曲线 |
 | `dinov2_pspnet_voc_prediction.png` | 原图 / 真值 / 预测 三联对比图 |
+| `dinov2_pspnet_voc_v2_best_head.pth` | v2 最优分割头权重 |
+| `dinov2_pspnet_voc_v2_curves.png` | v2 训练曲线 |
+| `dinov2_pspnet_voc_v2_prediction.png` | v2 三联对比图 |
+
 
 ## 7. 环境
 
