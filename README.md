@@ -164,11 +164,6 @@ backbone 换 `dinov2-base`（768 维），其余配置同 v2，30 epochs，Kaggl
 
 ![v3 分割效果](dinov2_pspnet_voc_v3_prediction.png)
 
-**附：TTA 测试时增强实验（未纳入正式消融表）**。对 v3 权重独立做了 4 路 TTA 评估
-（原图 + 水平翻转 + 0.75× + 1.25×，logits 取平均后 argmax）：标准推理 mIoU = 81.09%，
-TTA mIoU = 81.47%，**+0.38%**。该值低于训练时打印的 83.00% 主要因重评估环境
-（torchvision / HF transformers 版本）的浮点差异，详见 `results_3/tta_results.txt`。
-结论：在当前 mIoU 区间（>80%）TTA 收益已趋近边际，所以未作为 v4 正式迭代方向。
 
 ## 5. 关于 DINOv3 的说明
 
