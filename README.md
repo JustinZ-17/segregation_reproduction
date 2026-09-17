@@ -89,7 +89,7 @@ PSPNet 的核心是**金字塔池化模块（Pyramid Pooling Module）**：用 4
 | batch size | 2 |
 | 训练轮数 | 30 epochs |
 | 损失函数 | CrossEntropyLoss(ignore_index=255)，255 为 void 边界像素 |
-| 训练环境 | Kaggle T4 GPU，实测约 5~6 min/epoch，全程约 2h45m |
+| 训练环境 | Kaggle T4 GPU，实测约 5~6 min/epoch，全程 3h左右 |
 
 ## 3. 实验流程
 
